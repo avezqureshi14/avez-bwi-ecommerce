@@ -1,7 +1,7 @@
-# Startup Directory Web App
+# Ecommerce Web App
 
 ### Project URLs
-- **Frontend:** [View the deployed Frontend]()
+- **Frontend:** [View the deployed Frontend](https://avez-bwi-ecommerce.netlify.app/)
 
 ## Features
 - **Frontend Development:**
@@ -21,7 +21,7 @@
 
 ## How to Use
 To explore the Startup Directory Web App:
-1. Visit the [Frontend URL]().
+1. Visit the [Frontend URL](https://avez-bwi-ecommerce.netlify.app/).
 2. Interact with the intuitive UI to explore startups, view details, and use filtering options.
 3. Submit new startup details using the provided form.
 
