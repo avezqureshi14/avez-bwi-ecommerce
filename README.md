@@ -49,4 +49,4 @@ For any queries or information:
 
 ## Contributors
 
-- [Mohammad Avez](https://github.com/avezqureshi14): 
+- [Mohammad Avez](https://github.com/avezqureshi14)
