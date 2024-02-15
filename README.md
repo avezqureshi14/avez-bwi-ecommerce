@@ -1,5 +1,15 @@
 # Ecommerce Web App
 
+![s1](https://github.com/avezqureshi14/avez-bwi-ecommerce/assets/95353195/f0342031-fed2-44e9-b516-41cb82a3e8e0)
+
+![s2](https://github.com/avezqureshi14/avez-bwi-ecommerce/assets/95353195/d84ee0d1-96af-4756-b4ee-1b554e2206e9)
+
+![s3](https://github.com/avezqureshi14/avez-bwi-ecommerce/assets/95353195/84c3aaf8-306c-4d40-a4f9-743d3a5ed725)
+
+![s4](https://github.com/avezqureshi14/avez-bwi-ecommerce/assets/95353195/c91a204f-3485-4a18-b3ab-39a2fd2b5682)
+
+
+
 ### Project URLs
 - **Frontend:** [View the deployed Frontend](https://avez-bwi-ecommerce.netlify.app/)
 
