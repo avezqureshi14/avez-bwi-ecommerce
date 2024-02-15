@@ -2,9 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../redux/actions/products";
 import Loading from "../components/common/Loading";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { addToCart, removeFromCart } from "../redux/actions/cart";
 const Search = () => {
   const [query, setSearchQuery] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const profile = JSON.parse(localStorage.getItem("profile"));
+    setIsLoggedIn(!!profile);
+  }, []);
+  const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
@@ -23,6 +31,18 @@ const Search = () => {
   }
   console.log(query);
 
+  const goToCart = () => {
+    navigate("/cart");
+  };
+
+  const removeCart = async (id) => {
+    console.log(id);
+    await dispatch(removeFromCart(id));
+  };
+
+  const addCart = async (product) => {
+    await dispatch(addToCart(product));
+  };
   return (
     <>
       <div className="header-main">
@@ -39,9 +59,29 @@ const Search = () => {
               placeholder="Enter your product name..."
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button className="search-btn">
-              <ion-icon name="search-outline"></ion-icon>
-            </button>
+          </div>
+          <div className="header-user-actions">
+            {isLoggedIn ? (
+              <>
+                <NavLink to="/profile">
+                  <button className="action-btn">
+                    <ion-icon name="person-outline"></ion-icon>
+                  </button>
+                </NavLink>
+                <NavLink to="/cart">
+                  <button className="action-btn">
+                    <ion-icon name="bag-handle-outline"></ion-icon>
+                    <span className="count">{cart?.length}</span>
+                  </button>
+                </NavLink>
+              </>
+            ) : (
+              <NavLink to="/login">
+                <button className="action-btn">
+                  <ion-icon name="person-outline"></ion-icon>
+                </button>
+              </NavLink>
+            )}
           </div>
         </div>
       </div>
@@ -54,6 +94,10 @@ const Search = () => {
                 {products &&
                   products?.map((item, index) => {
                     const deletePrice = item.price + item.price * 0.15;
+                    const isProductInCart = cart.some(
+                      (cartItem) => cartItem.id === item.id
+                    );
+
                     return (
                       <div className="showcase">
                         <div className="showcase-banner">
@@ -77,13 +121,38 @@ const Search = () => {
                           <p className="showcase-badge">15%</p>
 
                           <div className="showcase-actions">
-                            <button className="btn-action">
-                              <ion-icon name="eye-outline"></ion-icon>
-                            </button>
-
-                            <button className="btn-action">
-                              <ion-icon name="bag-add-outline"></ion-icon>
-                            </button>
+                            {!isProductInCart && (
+                              <button
+                                onClick={() => addCart(item)}
+                                className="btn-action"
+                                title="Add to Cart"
+                              >
+                                <ion-icon name="bag-add-outline"></ion-icon>
+                              </button>
+                            )}
+                            {isProductInCart && (
+                              <>
+                                <button
+                                  onClick={goToCart}
+                                  title="Go to Cart"
+                                  className="btn-action"
+                                >
+                                  <ion-icon name="cart-outline"></ion-icon>
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    removeCart(item.id);
+                                  }}
+                                  title="Remove From Cart"
+                                  className="btn-action"
+                                >
+                                  <ion-icon
+                                    title="Remove From Cart"
+                                    name="trash-outline"
+                                  ></ion-icon>
+                                </button>
+                              </>
+                            )}
                           </div>
                         </div>
 

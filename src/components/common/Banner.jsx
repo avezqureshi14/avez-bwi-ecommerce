@@ -5,7 +5,7 @@ import banner3 from "../../assets/images/banner-3.jpg";
 const Banner = () => {
   return (
     <>
-      <div className="banner">
+      <div className="banner" style={{marginTop:"8%"}} >
         <div className="container">
           <div className="slider-container has-scrollbar">
             <div className="slider-item">

@@ -18,7 +18,7 @@ const Testimonials = () => {
 
           <p className="testimonial-name">Jeff Bezos</p>
 
-          <p className="testimonial-title">CEO & Founder Amazon</p>
+          <p className="testimonial-title">CEO & Founder, Amazon</p>
 
           <img
             src={quote}

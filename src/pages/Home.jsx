@@ -20,7 +20,9 @@ const Home = () => {
     const profile = JSON.parse(localStorage.getItem("profile"));
     setIsLoggedIn(!!profile); // !! converts the value to a boolean
     setId(profile?.result?._id);
+    
   }, []);
+
   useEffect(() => {
     if (reload === "true") {
       // Remove the reload query parameter to avoid continuous reloads

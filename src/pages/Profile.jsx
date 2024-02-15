@@ -33,7 +33,7 @@ const Profile = () => {
   return (
     <>
     <Header/>
-    <main className="loginForm ">
+    <main className="loginForm"  style={{marginTop:"8%"}} >
       <div className="testimonial">
         <div className="testimonial-card profile sha">
           <h1>Profile</h1>

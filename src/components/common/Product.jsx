@@ -4,8 +4,8 @@ import img2 from "../../assets/images/products/jacket-4.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/actions/products";
 import Loading from "../common/Loading";
-import { addToCart } from "../../redux/actions/cart";
-import {useNavigate} from "react-router-dom"
+import { addToCart, removeFromCart } from "../../redux/actions/cart";
+import { useNavigate } from "react-router-dom";
 const Product = ({ selectedCategory, selectedPriceRange }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,19 +32,23 @@ const Product = ({ selectedCategory, selectedPriceRange }) => {
     return filteredProducts;
   };
 
-  const goToCart = () =>{
-      navigate("/cart")
-  }
+  const goToCart = () => {
+    navigate("/cart");
+  };
 
   const addCart = async (product) => {
     await dispatch(addToCart(product));
   };
-  const cart = useSelector((state)=>state.cart.cart);
+  const cart = useSelector((state) => state.cart.cart);
   const products = filterProducts(
     productsArray,
     selectedCategory,
     selectedPriceRange
   );
+  const removeCart = async (id) => {
+    console.log(id);
+    await dispatch(removeFromCart(id));
+  };
 
   if (!products) {
     return <Loading />;
@@ -55,7 +59,9 @@ const Product = ({ selectedCategory, selectedPriceRange }) => {
       {products &&
         products?.map((item, index) => {
           const deletePrice = item.price + item.price * 0.15;
-          const change = cart.map((cartItem) => cartItem.id === item.id);
+          const isProductInCart = cart.some(
+            (cartItem) => cartItem.id === item.id
+          );
           return (
             <div className="showcase">
               <div className="showcase-banner">
@@ -79,13 +85,38 @@ const Product = ({ selectedCategory, selectedPriceRange }) => {
                 <p className="showcase-badge">15%</p>
 
                 <div className="showcase-actions">
-                  <button className="btn-action">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </button>
-                  <button onClick={()=>addCart(item)} className="btn-action">
-                    <ion-icon name="bag-add-outline"></ion-icon>
-                  </button> 
-                  
+                  {!isProductInCart && (
+                    <button
+                      onClick={() => addCart(item)}
+                      className="btn-action"
+                      title="Add to Cart"
+                    >
+                      <ion-icon name="bag-add-outline"></ion-icon>
+                    </button>
+                  )}
+                  {isProductInCart && (
+                    <>
+                      <button
+                        onClick={goToCart}
+                        title="Go to Cart"
+                        className="btn-action"
+                      >
+                        <ion-icon name="cart-outline"></ion-icon>
+                      </button>
+                      <button
+                        onClick={() => {
+                          removeCart(item.id);
+                        }}
+                        title="Remove From Cart"
+                        className="btn-action"
+                      >
+                        <ion-icon
+                          title="Remove From Cart"
+                          name="trash-outline"
+                        ></ion-icon>
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
 

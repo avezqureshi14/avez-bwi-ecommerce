@@ -7,7 +7,6 @@ const Header = () => {
   return (
     <>
         <header>
-                <HeaderTop/>
                 <HeaderMain/>
                 <MobileNav/>
         </header>

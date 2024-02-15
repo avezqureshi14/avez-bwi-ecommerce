@@ -33,7 +33,7 @@ const Login = () => {
   return (
     <>
       <Header/>
-      <main className="loginForm">
+      <main className="loginForm"  style={{marginTop:"8%"}}  >
         <div className="testimonial">
           <div className="testimonial-card sha">
             <h1>Login</h1>
