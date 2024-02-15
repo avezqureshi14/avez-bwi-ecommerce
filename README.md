@@ -29,12 +29,6 @@
   - Modular code structure following naming conventions for consistency.
   - Attention to design and functionality details.
 
-## How to Use
-To explore the Startup Directory Web App:
-1. Visit the [Frontend URL](https://avez-bwi-ecommerce.netlify.app/).
-2. Interact with the intuitive UI to explore startups, view details, and use filtering options.
-3. Submit new startup details using the provided form.
-
 ## Project Structure
 
 - `/client`: Holds the frontend code for user interface development.
